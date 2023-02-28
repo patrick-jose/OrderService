@@ -1,0 +1,22 @@
+services:
+  orderservice:
+    image: orderservice-image:latest
+    depends_on:
+      - "postgres_image"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    environment:
+      DB_CONNECTION_STRING: "host=postgres_image;port=5432;database=OrdersDB;username=postgresUser;password=postgresPW"
+  postgres_image:
+    image: postgres:latest
+    #volumes:
+    #  - ./DatabaseBackup.sql:/docker-entrypoint-initdb.d/DatabaseBackup.sql
+    environment:
+      POSTGRES_PASSWORD: "postgresPW"
+      POSTGRES_USER: "postgresUser"
+      POSTGRES_DB: "postgresDB"
+    ports:
+      - "5455:5432"

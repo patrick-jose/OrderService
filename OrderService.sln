@@ -19,7 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Receive", "Receive\Receive.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConfigFiles", "ConfigFiles", "{9F8C73C3-21DA-4C8B-ADBA-16D64EECE5DF}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\DatabaseBackup.sql = ..\..\..\DatabaseBackup.sql
+		DatabaseBackup.sql = DatabaseBackup.sql
+		docker-compose.yml = docker-compose.yml
 		Dockerfile = Dockerfile
 	EndProjectSection
 EndProject

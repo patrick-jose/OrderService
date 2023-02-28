@@ -21,8 +21,7 @@ namespace TestProject
         {
             _log = new LogWriter();
             _customerRepository = new Mock<CustomerRepository>().Object;
-            _productRepository = new Mock<ProductRepository>().Object;
-            _ordersRepository = new OrdersRepository(_log, _customerRepository, _productRepository);
+            _ordersRepository = new OrdersRepository(_log, _customerRepository);
 
             var result = _ordersRepository.GetOrderAsync(2);
 
@@ -34,8 +33,7 @@ namespace TestProject
         {
             _log = new LogWriter();
             _customerRepository = new Mock<CustomerRepository>().Object;
-            _productRepository = new Mock<ProductRepository>().Object;
-            _ordersRepository = new OrdersRepository(_log, _customerRepository, _productRepository);
+            _ordersRepository = new OrdersRepository(_log, _customerRepository);
 
             var order = new CustomerOrderModel { CustomerId = 3, OrderId = 1001, ProductId = 3, Quantity = 5, UnitaryPrice = 12.4m };
 
@@ -51,7 +49,7 @@ namespace TestProject
             _log = new LogWriter();
             _customerRepository = new CustomerRepository(_log);
             _productRepository = new ProductRepository(_log);
-            _ordersRepository = new OrdersRepository(_log, _customerRepository, _productRepository);
+            _ordersRepository = new OrdersRepository(_log, _customerRepository);
             _orderServiceBusiness = new OrderServiceBusiness(_ordersRepository, _log, _productRepository);
 
             var testModel1 = new OrderDTO()
@@ -95,18 +93,5 @@ namespace TestProject
             Assert.IsTrue(_ordersRepository.GetOrderAsync(1004).Result != null);
             Assert.IsTrue(_ordersRepository.GetOrderAsync(1005).Result != null);
         }
-
-        //[TestMethod]
-        //public void GetBusinessTest()
-        //{
-        //    _ordersRepository = new OrdersRepository();
-
-        //    var order = new CustomerOrderModel { CustomerId = 3, OrderId = 1001, ProductId = 3, Quantity = 5, UnitaryPrice = 12.4m };
-
-        //    var result = _ordersRepository.Insert(order);
-
-        //    Assert.IsNotNull(result.Result);
-        //    Assert.IsTrue(result.Result > 0);
-        //}
     }
 }

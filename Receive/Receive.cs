@@ -10,7 +10,7 @@ using RabbitMQ.Client.Events;
 var log = new LogWriter();
 var customerRepository = new CustomerRepository(log);
 var productRepository = new ProductRepository(log);
-var ordersRepository = new OrdersRepository(log, customerRepository, productRepository);
+var ordersRepository = new OrdersRepository(log, customerRepository);
 var business = new OrderServiceBusiness(ordersRepository, log, productRepository);
 
 var factory = new ConnectionFactory { HostName = "localhost" };

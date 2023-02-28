@@ -1,6 +1,9 @@
 Comando Docker:
 	Postgres:
 		docker run --name myPostgresDb -p 5455:5432 -e POSTGRES_USER=postgresUser -e POSTGRES_PASSWORD=postgresPW -e POSTGRES_DB=postgresDB -d postgres
+		
+Backup Postgres:
+	docker exec -i ordersDb /bin/bash -c "PGPASSWORD=postgresPW pg_dump --encoding utf8 --username postgresUser OrdersDB" > ./DataBaseBackup.sql
 
 
 Exemplos de Payload:
@@ -8,11 +11,7 @@ Exemplos de Payload:
 [
 	{
 		"codigoPedido":1003,
-		"customer":
-		{
-			"codigoCliente":10,
-			"Name":"John Doe"
-		},
+		"codigoCliente":10,
 		"itens":
 		[
 			{
@@ -37,11 +36,7 @@ Exemplos de Payload:
 	},
 	{
 		"codigoPedido":1004,
-		"customer":
-		{
-			"codigoCliente":11,
-			"Name":"Test Now"
-		},
+		"codigoCliente":11,
 		"itens":
 		[
 			{
@@ -54,11 +49,7 @@ Exemplos de Payload:
 	},
 	{
 		"codigoPedido":1005,
-		"customer":
-		{
-			"codigoCliente":12,
-			"Name":"Jone Doe"
-		},
+		"codigoCliente":12,
 		"itens":
 		[
 			{

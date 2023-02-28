@@ -20,15 +20,13 @@ namespace OrderService.Data.Repository
         private readonly NpgsqlConnection connection;
         private readonly ILogWriter _log;
         private readonly ICustomerRepository _customerRepository;
-        private readonly IProductRepository _productRepository;
 
-        public OrdersRepository(ILogWriter log, ICustomerRepository customerRepository, IProductRepository productRepository)
+        public OrdersRepository(ILogWriter log, ICustomerRepository customerRepository)
         {
             connection = new NpgsqlConnection(CONNECTION_STRING);
             connection.Open();
             _log = log;
             _customerRepository = customerRepository;
-            _productRepository = productRepository;
         }
 
         public async Task<CustomerOrderModel> GetOrderAsync(long id)
