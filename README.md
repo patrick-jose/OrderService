@@ -7,7 +7,7 @@
 ```mermaid
 graph LR
 A[OrderAPI .NET 7] --> C(Postgres Database)
-B((RabbitMQ)) -- " 📨" --> D[OrderService]
+B((RabbitMQ)) -- " 📨" --> D[OrderService .NET 7]
 D --> C
 ```
 
