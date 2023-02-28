@@ -13,6 +13,7 @@ namespace TestProject
         private IOrdersRepository _ordersRepository;
         private IOrderServiceBusiness _orderServiceBusiness;
         private ICustomerRepository _customerRepository;
+        private IProductRepository _productRepository;
         private ILogWriter _log;
 
         [TestMethod]
@@ -20,7 +21,8 @@ namespace TestProject
         {
             _log = new LogWriter();
             _customerRepository = new Mock<CustomerRepository>().Object;
-            _ordersRepository = new OrdersRepository(_log, _customerRepository);
+            _productRepository = new Mock<ProductRepository>().Object;
+            _ordersRepository = new OrdersRepository(_log, _customerRepository, _productRepository);
 
             var result = _ordersRepository.GetOrderAsync(2);
 
@@ -32,7 +34,8 @@ namespace TestProject
         {
             _log = new LogWriter();
             _customerRepository = new Mock<CustomerRepository>().Object;
-            _ordersRepository = new OrdersRepository(_log, _customerRepository);
+            _productRepository = new Mock<ProductRepository>().Object;
+            _ordersRepository = new OrdersRepository(_log, _customerRepository, _productRepository);
 
             var order = new CustomerOrderModel { CustomerId = 3, OrderId = 1001, ProductId = 3, Quantity = 5, UnitaryPrice = 12.4m };
 
@@ -47,17 +50,18 @@ namespace TestProject
         {
             _log = new LogWriter();
             _customerRepository = new CustomerRepository(_log);
-            _ordersRepository = new OrdersRepository(_log, _customerRepository);
-            _orderServiceBusiness = new OrderServiceBusiness(_ordersRepository, _log);
+            _productRepository = new ProductRepository(_log);
+            _ordersRepository = new OrdersRepository(_log, _customerRepository, _productRepository);
+            _orderServiceBusiness = new OrderServiceBusiness(_ordersRepository, _log, _productRepository);
 
             var testModel1 = new OrderDTO()
             {
                 Id = 1003,
                 customer = new CustomerDTO() { Id = 10, Name = "John Doe" },
-                Items = new List<ProductDTO> {  
-                    new ProductDTO() { id = 2, Name = "Lapis", Price = 12.9M, Quantity = 2},
-                    new ProductDTO() { id = 8, Name = "Estojo", Price = 7.99M, Quantity = 5},
-                    new ProductDTO() { id = 6, Name = "Borracha", Price = 0.5M, Quantity = 3},
+                Items = new List<ProductDTO> {
+                    new ProductDTO() { Name = "Lapis", Price = 12.9M, Quantity = 2},
+                    new ProductDTO() { Name = "Estojo", Price = 7.99M, Quantity = 5},
+                    new ProductDTO() { Name = "Borracha", Price = 0.5M, Quantity = 3},
                 }
             };
 
@@ -86,6 +90,10 @@ namespace TestProject
             var listTestModel = new List<OrderDTO>() { testModel1, testModel2, testModel3 };
 
             await _orderServiceBusiness.SaveOrders(listTestModel);
+
+            Assert.IsTrue(_ordersRepository.GetOrderAsync(1003).Result != null);
+            Assert.IsTrue(_ordersRepository.GetOrderAsync(1004).Result != null);
+            Assert.IsTrue(_ordersRepository.GetOrderAsync(1005).Result != null);
         }
 
         //[TestMethod]

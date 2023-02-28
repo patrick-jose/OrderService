@@ -1,16 +1,23 @@
 ﻿using System.Text;
+using System.Text.Json;
+using OrderService.Business;
 using OrderService.Data.Models;
+using OrderService.Data.Repository;
 using OrderService.Utils;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
 var log = new LogWriter();
+var customerRepository = new CustomerRepository(log);
+var productRepository = new ProductRepository(log);
+var ordersRepository = new OrdersRepository(log, customerRepository, productRepository);
+var business = new OrderServiceBusiness(ordersRepository, log, productRepository);
 
 var factory = new ConnectionFactory { HostName = "localhost" };
 using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();
 
-channel.QueueDeclare(queue: "hello",
+channel.QueueDeclare(queue: "orders",
                      durable: false,
                      exclusive: false,
                      autoDelete: false,
@@ -19,16 +26,21 @@ channel.QueueDeclare(queue: "hello",
 log.LogWrite(" [*] Waiting for messages.");
 
 var consumer = new EventingBasicConsumer(channel);
-consumer.Received += (model, ea) =>
+
+consumer.Received += async (model, ea) =>
 {
     var body = ea.Body.ToArray();
     var message = Encoding.UTF8.GetString(body);
     log.LogWrite($" [x] Received {message}");
 
-    var order = new CustomerOrderModel() { CustomerId = 3, OrderId = 1002, ProductId = 5, Quantity = 10, UnitaryPrice = 20 };
+    var listOrderDTO = JsonSerializer.Deserialize<List<OrderDTO>>(message);
 
-
+    await business.SaveOrders(listOrderDTO);
 };
-channel.BasicConsume(queue: "hello",
+
+channel.BasicConsume(queue: "orders",
                      autoAck: true,
                      consumer: consumer);
+
+Console.WriteLine(" Press [enter] to exit.");
+Console.ReadLine();
