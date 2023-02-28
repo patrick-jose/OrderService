@@ -2,7 +2,7 @@
 
 namespace OrderService.Utils
 {
-    public class LogWriter
+    public class LogWriter : ILogWriter
     {
         private string m_exePath = string.Empty;
 

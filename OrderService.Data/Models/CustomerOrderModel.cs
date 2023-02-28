@@ -8,10 +8,11 @@ namespace OrderService.Data.Models
 {
     public class CustomerOrderModel
     {
-        public int OrderId { get; set; }
-        public int CustomerId { get; set; }
-        public int ProductId { get; set; }
-        public int Quantity { get; set; }
+        public long OrderId { get; set; }
+        public long CustomerId { get; set; }
+        public long ProductId { get; set; }
+        public long Quantity { get; set; }
         public decimal UnitaryPrice { get; set; }
+        public string? CustomerName { get; set; }
     }
 }

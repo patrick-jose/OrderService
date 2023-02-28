@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
+    <OutputType>Exe</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>enable</Nullable>  
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.123" />
-    <PackageReference Include="Npgsql" Version="7.0.2" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>

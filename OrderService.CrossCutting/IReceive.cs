@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderServce.CrossCutting
+namespace OrderService.CrossCutting
 {
     public interface IReceive
     {
-        public void ReceiveMessage();
+        public string ReceiveMessage();
     }
 }

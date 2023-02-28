@@ -7,8 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\OrderService.CrossCutting\OrderService.CrossCutting.csproj" />
-  </ItemGroup>
-
 </Project>
