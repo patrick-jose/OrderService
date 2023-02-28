@@ -3,21 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService", "OrderService\OrderService.csproj", "{F8C34038-E8B5-42D4-B3CA-05DA8BE25E08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Business", "OrderService.Business\OrderService.Business.csproj", "{A1CF0780-CE69-4C8B-AFF1-085B4195DAAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.Business", "OrderService.Business\OrderService.Business.csproj", "{A1CF0780-CE69-4C8B-AFF1-085B4195DAAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Data", "OrderService.Data\OrderService.Data.csproj", "{51854D91-714D-4330-8256-545D867F1816}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.Data", "OrderService.Data\OrderService.Data.csproj", "{51854D91-714D-4330-8256-545D867F1816}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Utils", "OrderService.Utils\OrderService.Utils.csproj", "{942D29E7-DCFA-464B-A2BB-BA2D630B8E38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.Utils", "OrderService.Utils\OrderService.Utils.csproj", "{942D29E7-DCFA-464B-A2BB-BA2D630B8E38}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.Tests", "OrderService.Tests\OrderService.Tests.csproj", "{3D0ED686-4006-48D7-919F-9A348963AB7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Tests", "OrderService.Tests\OrderService.Tests.csproj", "{3D0ED686-4006-48D7-919F-9A348963AB7D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCutting", "{A520056B-5D37-45A6-B373-17D4A36C3CC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Send", "Send\Send.csproj", "{57446F15-72B6-48EB-92AB-BF8C63A44DEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Send", "Send\Send.csproj", "{57446F15-72B6-48EB-92AB-BF8C63A44DEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receive", "Receive\Receive.csproj", "{A22F404B-53E9-47F4-9135-B4C12BD8A6E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Receive", "Receive\Receive.csproj", "{A22F404B-53E9-47F4-9135-B4C12BD8A6E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConfigFiles", "ConfigFiles", "{9F8C73C3-21DA-4C8B-ADBA-16D64EECE5DF}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\DatabaseBackup.sql = ..\..\..\DatabaseBackup.sql
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +29,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F8C34038-E8B5-42D4-B3CA-05DA8BE25E08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8C34038-E8B5-42D4-B3CA-05DA8BE25E08}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8C34038-E8B5-42D4-B3CA-05DA8BE25E08}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8C34038-E8B5-42D4-B3CA-05DA8BE25E08}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A1CF0780-CE69-4C8B-AFF1-085B4195DAAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A1CF0780-CE69-4C8B-AFF1-085B4195DAAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1CF0780-CE69-4C8B-AFF1-085B4195DAAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
