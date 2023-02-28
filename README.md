@@ -1,5 +1,7 @@
 # OrderService
 
+.NET microservice to listen to a queue in RabbitMQ and sabe data to Postgres database
+
 ### Docker Hub RabbitMQ Repository
 
 https://hub.docker.com/repository/docker/patrickamaral/rabbitmq/general
