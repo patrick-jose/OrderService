@@ -2,6 +2,15 @@
 
 .NET microservice to listen to a queue in RabbitMQ and save data to Postgres database
 
+## System Architecture
+
+```mermaid
+graph LR
+A[OrderAPI .NET 7] --> C(Postgres Database)
+B((RabbitMQ)) -- " 📨" --> D[OrderService]
+D --> C
+```
+
 ### Docker Hub RabbitMQ Repository
 
 https://hub.docker.com/repository/docker/patrickamaral/rabbitmq/general
