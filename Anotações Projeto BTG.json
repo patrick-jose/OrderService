@@ -4,6 +4,9 @@ Comando Docker:
 		
 Backup Postgres:
 	docker exec -i ordersDb /bin/bash -c "PGPASSWORD=postgresPW pg_dump --encoding utf8 --username postgresUser OrdersDB" > ./DataBaseBackup.sql
+	
+RabbitMQ Manegement:
+	http://localhost:15672
 
 
 Exemplos de Payload:
